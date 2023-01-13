@@ -1,0 +1,47 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: FlowFactory
+    network: mumbai
+    source:
+      address: "0x6a199e376D0dc789E87E5f9ED6d303b63b259c91"
+      abi: FlowFactory
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - RainterpreterExpressionDeployer
+      abis:
+        - name: FlowFactory
+          file: ./abis/FlowFactory.json
+      eventHandlers:
+        - event: Implementation(address,address)
+          handler: handleImplementation
+        - event: NewChild(address,address)
+          handler: handleNewChild
+      file: ./src/flowFactory.ts
+templates:
+  - kind: ethereum/contract
+    name: FlowTemplate
+    network: mumbai
+    source:
+      abi: Flow
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Flow
+      abis:
+        - name: Flow
+          file: ./abis/Flow.json
+      eventHandlers:
+        - event: Context(address,uint256[][])
+          handler: handleContext
+        - event: Initialize(address,((bytes[],uint256[]),(address,address,(bytes[],uint256[])[])))
+          handler: handleInitialize
+      file: ./src/flow.ts
