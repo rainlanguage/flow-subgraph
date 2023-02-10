@@ -24,7 +24,7 @@ export const exec = (cmd: string): string | Buffer => {
 };
 
 // Subgraph Management
-export const fetchSubgraphs = process.env.GRAPH_URL
+export const fetchSubgraphs = process.env.RPC_URL
   ? createApolloFetch({
       uri: `http://localhost:8030/graphql`,
     })
@@ -38,7 +38,7 @@ export const fetchSubgraphs = process.env.GRAPH_URL
  * @returns connection to subgraph
  */
 export const fetchSubgraph = (subgraphName: string): ApolloFetch => {
-  return process.env.GRAPH_URL
+  return process.env.RPC_URL
     ? createApolloFetch({
         uri: `http://localhost:8000/subgraphs/name/${subgraphName}`,
       })
