@@ -7,6 +7,9 @@ let
     })
     { };
 
+  compile = pkgs.writeShellScriptBin "compile" ''
+    hardhat compile
+  '';
   prettier-check = pkgs.writeShellScriptBin "prettier-check" ''
     prettier --check .
   '';
@@ -22,8 +25,8 @@ let
   '';
 
   init = pkgs.writeShellScriptBin "init" ''
-    mkdir -p contracts && cp -r  node_modules/@beehiveinnovation/rain-protocol/contracts/* contracts/
-    mkdir -p utils && cp -r  node_modules/@beehiveinnovation/rain-protocol/utils/* utils/
+    mkdir -p contracts && cp -r  node_modules/@rainprotocol/rain-protocol/contracts/* contracts/
+    mkdir -p utils && cp -r  node_modules/@rainprotocol/rain-protocol/utils/* utils/
     compile
   '';
 
@@ -40,6 +43,7 @@ pkgs.stdenv.mkDerivation {
     prettier-write
     flush-all
     init
+    compile
   ];
 
   shellHook = ''
