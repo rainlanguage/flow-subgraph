@@ -11,11 +11,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker
-        uses: docker/setup-docker@v1
-        with:
-          version: latest
-
       - name: Use Node.js version
         uses: actions/setup-node@v2
         with:
@@ -32,7 +27,7 @@ jobs:
 
       - name: Run Subgraph tests
         run: |
-          npm run test
+          npm run test --network localhost
 
       - name: Stop containers
         run: docker-compose down
