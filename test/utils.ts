@@ -26,10 +26,10 @@ export const exec = (cmd: string): string | Buffer => {
 // Subgraph Management
 export const fetchSubgraphs = process.env.RPC_URL
   ? createApolloFetch({
-      uri: `http://localhost:8030/graphql`,
+      uri: `${process.env.RPC_URL}:8030/graphql`,
     })
   : createApolloFetch({
-      uri: `${process.env.RPC_URL}:8030/graphql`,
+      uri: `http://localhost:8030/graphql`,
     });
 
 /**
@@ -40,10 +40,10 @@ export const fetchSubgraphs = process.env.RPC_URL
 export const fetchSubgraph = (subgraphName: string): ApolloFetch => {
   return process.env.RPC_URL
     ? createApolloFetch({
-        uri: `http://localhost:8000/subgraphs/name/${subgraphName}`,
+        uri: `${process.env.RPC_URL}:8000/subgraphs/name/${subgraphName}`,
       })
     : createApolloFetch({
-        uri: `${process.env.RPC_URL}:8000/subgraphs/name/${subgraphName}`,
+        uri: `http://localhost:8000/subgraphs/name/${subgraphName}`,
       });
 };
 
@@ -215,7 +215,6 @@ export const getEvent = async (
 };
 
 export const eighteenZeros = "000000000000000000";
-
 
 export const ADDRESS_ZERO = ethers.constants.AddressZero;
 export const ONE = ethers.BigNumber.from("1" + eighteenZeros);

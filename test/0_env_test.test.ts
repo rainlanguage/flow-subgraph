@@ -47,7 +47,7 @@ describe("subgraph environment test.", () => {
         }),
       });
       const rs = await (await response).json();
-      console.log(rs)
+      console.log(rs);
       rpc_url = `${process.env.RPC_URL}`;
     }
     console.log("rpc daemon : ", rpc_url);
