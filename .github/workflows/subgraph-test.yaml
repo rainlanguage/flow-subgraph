@@ -1,6 +1,9 @@
 name: flow-subgraph-test
 on: [push, pull_request]
 
+env:
+  GRAPH_TOKEN: ${{ secrets.GRAPH_ACCESS_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,3 +32,9 @@ jobs:
 
       - name: Stop containers
         run: docker-compose down
+
+      - name: Graph Authentication
+        run: graph auth --product hosted-service $GRAPH_TOKEN
+      
+      - name: Graph Deployments
+        run: graph deploy --product hosted-service vishalkale151071/shot-2-the-moon
