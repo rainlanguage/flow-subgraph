@@ -49,6 +49,7 @@ const config: HardhatUserConfig = {
     docker: createDockerConfig(),
     localhost: createLocalhostConfig()
   },
+  defaultNetwork: "localhost",
   solidity: {
     compilers: [
       {
