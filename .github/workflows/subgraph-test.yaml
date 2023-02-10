@@ -34,7 +34,7 @@ jobs:
         run: docker-compose down
 
       - name: Graph Authentication
-        run: graph auth --product hosted-service $GRAPH_TOKEN
+        run: npx graph auth --product hosted-service $GRAPH_TOKEN
       
       - name: Graph Deployments
-        run: graph deploy --product hosted-service vishalkale151071/shot-2-the-moon
+        run: npx graph deploy --product hosted-service vishalkale151071/shot-2-the-moon
