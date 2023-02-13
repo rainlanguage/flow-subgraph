@@ -1,5 +1,11 @@
 name: flow-subgraph-test
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 env:
   GRAPH_TOKEN: ${{ secrets.GRAPH_ACCESS_TOKEN }}
@@ -32,6 +38,10 @@ jobs:
 
       - name: Stop containers
         run: docker-compose down
+
+      - name: Deploying Contracts
+        run: |
+          hardhat run scripts/deployFlowFactory.ts --network mumbai
 
       - name: Graph Authentication
         run: npx graph auth --product hosted-service $GRAPH_TOKEN

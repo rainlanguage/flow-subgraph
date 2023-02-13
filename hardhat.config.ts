@@ -3,7 +3,9 @@ import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 import "@nomiclabs/hardhat-ethers";
 import "hardhat-contract-sizer";
+import dotenv from "dotenv";
 
+dotenv.config();
 const MOCHA_TESTS_PATH = process.env.TESTS_PATH || "./test";
 const MOCHA_SHOULD_BAIL = process.env.BAIL === "true";
 
@@ -42,12 +44,20 @@ const config: HardhatUserConfig = {
     outDir: "typechain", // overrides upstream 'fix' for another issue which changed this to 'typechain-types'
   },
   networks: {
+    mumbai: {
+      url: `https://rpc.ankr.com/polygon_mumbai`,
+      accounts: [`0x${process.env.DEPLOYMENT_KEY_MUMBAI}`],
+    },
+    mainnet: {
+      url: `https://mainnet.infura.io/v3/${process.env.API_KEY}`,
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
+    },
     hardhat: {
       blockGasLimit: 100000000,
       allowUnlimitedContractSize: true,
     },
     docker: createDockerConfig(),
-    localhost: createLocalhostConfig()
+    localhost: createLocalhostConfig(),
   },
   defaultNetwork: "localhost",
   solidity: {

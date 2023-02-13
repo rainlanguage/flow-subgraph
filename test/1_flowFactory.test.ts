@@ -29,9 +29,9 @@ describe("Deploy flowFactory", () => {
 
     writeFile(configPath, JSON.stringify(config, null, 2));
 
-    exec(`graph create --node ${rpc_url}:8020/ rainprotocol/flow`);
+    exec(`graph create --node http://${rpc_url}:8020/ rainprotocol/flow`);
     exec(
-      `npx mustache config/localhost.json subgraph.template.yaml subgraph.yaml && graph deploy --node ${rpc_url}:8020/ --ipfs ${rpc_url}:5001 rainprotocol/flow  --version-label 1`
+      `npx mustache config/localhost.json subgraph.template.yaml subgraph.yaml && graph deploy --node http://${rpc_url}:8020/ --ipfs http://${rpc_url}:5001 rainprotocol/flow  --version-label 1`
     );
 
     subgraph = fetchSubgraph("rainprotocol/flow");
