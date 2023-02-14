@@ -7,7 +7,7 @@ import { InitializeEvent } from "../typechain/contracts/flow/basic/Flow";
 import { getEventArgs, memoryOperand, MemoryType, op, Opcode } from "../utils";
 import { flowDeploy } from "../utils/deploy/flow/basic/deploy";
 import { FlowConfig } from "../utils/types/flow";
-import { factory, subgraph } from "./1_flowFactory.test";
+import { factory, subgraph } from "./2_flowFactory.test";
 import { waitForSubgraphToBeSynced } from "./utils";
 
 describe("deploy Flow test", () => {

@@ -9,6 +9,7 @@ on:
 
 env:
   GRAPH_TOKEN: ${{ secrets.GRAPH_ACCESS_TOKEN }}
+  DEPLOYMENT_KEY_MUMBAI: ${{ secrets.DEPLOYMENT_KEY_MUMBAI }}
 
 jobs:
   build:

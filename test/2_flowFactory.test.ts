@@ -8,7 +8,7 @@ import {
   waitForSubgraphToBeSynced,
   writeFile,
 } from "./utils";
-import { rpc_url } from "./0_env_test.test";
+import { rpc_url } from "./1_env_test.test";
 import { ApolloFetch, FetchResult } from "apollo-fetch";
 import { assert } from "chai";
 
