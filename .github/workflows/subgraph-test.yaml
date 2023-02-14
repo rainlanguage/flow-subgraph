@@ -41,7 +41,7 @@ jobs:
 
       - name: Deploying Contracts
         run: |
-          hardhat run scripts/deployFlowFactory.ts --network mumbai
+          npx hardhat run scripts/deployFlowFactory.ts --network mumbai
 
       - name: Graph Authentication
         run: npx graph auth --product hosted-service $GRAPH_TOKEN
