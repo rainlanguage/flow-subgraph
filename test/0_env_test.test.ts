@@ -29,7 +29,7 @@ describe("subgraph environment test.", () => {
         }),
       });
       const rs = await (await response).json();
-      rpc_url = "http://localhost";
+      rpc_url = "localhost";
     } catch {
       const response = fetch(`http://${process.env.RPC_URL}:${process.env.RPC_PORT}`, {
         method: "POST",
