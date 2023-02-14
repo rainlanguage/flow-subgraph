@@ -7,6 +7,8 @@ const sleep = (delay: number) =>
 
 async function main() {
 
+	const signers = await ethers.getSigners();
+
 	const blockNumber = await ethers.provider.getBlockNumber();
 	const configPath = path.resolve(
 		__dirname,
@@ -16,7 +18,7 @@ async function main() {
 
 	console.log("Deploying Flow factory");
 	const Factory = await ethers.getContractFactory("FlowFactory");
-	const factory = await Factory.deploy();
+	const factory = await Factory.connect(signers[0]).deploy();
 	await factory.deployed();
 	console.log("contract deployed : ", factory.address);
 
