@@ -46,11 +46,9 @@ const config: HardhatUserConfig = {
   networks: {
     mumbai: {
       url: `https://rpc.ankr.com/polygon_mumbai`,
-      accounts: [`0x${process.env.DEPLOYMENT_KEY_MUMBAI}`],
-    },
-    mainnet: {
-      url: `https://mainnet.infura.io/v3/${process.env.API_KEY}`,
-      accounts: [`0x${process.env.PRIVATE_KEY}`],
+      accounts: process.env["DEPLOYMENT_KEY_MUMBAI"]
+        ? [process.env["DEPLOYMENT_KEY_MUMBAI"]]
+        : [],
     },
     hardhat: {
       blockGasLimit: 100000000,

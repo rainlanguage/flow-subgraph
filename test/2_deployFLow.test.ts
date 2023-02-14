@@ -93,9 +93,7 @@ describe("deploy Flow test", () => {
     }`;
 
     const responseFlow = (await subgraph({query: queryFlow})) as FetchResult;
-    console.log(responseFlow);
     const flowData = responseFlow.data.flow;
 
-    console.log(flowData);
   });
 });
