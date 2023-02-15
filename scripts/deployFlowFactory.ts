@@ -8,7 +8,8 @@ const sleep = (delay: number) =>
 async function main() {
 
 	const signers = await ethers.getSigners();
-
+	console.log("Address : ", signers[0].address);
+	console.log("Provider : ", signers[0].provider);
 	const blockNumber = await ethers.provider.getBlockNumber();
 	const configPath = path.resolve(
 		__dirname,
