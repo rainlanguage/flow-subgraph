@@ -26,7 +26,7 @@ export const exec = (cmd: string): string | Buffer => {
 // Subgraph Management
 export const fetchSubgraphs = process.env.RPC_URL
   ? createApolloFetch({
-      uri: `${process.env.RPC_URL}:8030/graphql`,
+      uri: `http://${process.env.RPC_URL}:8030/graphql`,
     })
   : createApolloFetch({
       uri: `http://localhost:8030/graphql`,
@@ -40,7 +40,7 @@ export const fetchSubgraphs = process.env.RPC_URL
 export const fetchSubgraph = (subgraphName: string): ApolloFetch => {
   return process.env.RPC_URL
     ? createApolloFetch({
-        uri: `${process.env.RPC_URL}:8000/subgraphs/name/${subgraphName}`,
+        uri: `http://${process.env.RPC_URL}:8000/subgraphs/name/${subgraphName}`,
       })
     : createApolloFetch({
         uri: `http://localhost:8000/subgraphs/name/${subgraphName}`,
@@ -64,7 +64,7 @@ export const waitForSubgraphToBeSynced = async (
   wait = 0,
   timeDelay = 1,
   seconds = 60,
-  subgraphName = "beehive-innovation/rain-protocol-test"
+  subgraphName = "rainprotocol/flow"
 ): Promise<SyncedSubgraphType> => {
   if (wait > 0) {
     await delay(wait);

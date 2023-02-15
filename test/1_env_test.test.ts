@@ -1,6 +1,7 @@
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { ethers } from "hardhat";
 import * as dotenv from "dotenv";
+import { assert } from "chai";
 
 dotenv.config();
 export let rpc_url: string;
@@ -14,10 +15,6 @@ describe("subgraph environment test.", () => {
   });
 
   it("test environment should be working", async () => {
-    signers.forEach((signer) => {
-      console.log(signer.address);
-    });
-
     try {
       const response = fetch("http://localhost:8545", {
         method: "POST",
@@ -32,9 +29,9 @@ describe("subgraph environment test.", () => {
         }),
       });
       const rs = await (await response).json();
-      rpc_url = "http://localhost";
+      rpc_url = "localhost";
     } catch {
-      const response = fetch(`${process.env.RPC_URL}:${process.env.RPC_PORT}`, {
+      const response = fetch(`http://${process.env.RPC_URL}:${process.env.RPC_PORT}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,5 +48,6 @@ describe("subgraph environment test.", () => {
       rpc_url = `${process.env.RPC_URL}`;
     }
     console.log("rpc daemon : ", rpc_url);
+    assert.isNotEmpty(signers);
   });
 });
