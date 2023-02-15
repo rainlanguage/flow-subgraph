@@ -9,23 +9,8 @@ dotenv.config();
 const MOCHA_TESTS_PATH = process.env.TESTS_PATH || "./test";
 const MOCHA_SHOULD_BAIL = process.env.BAIL === "true";
 
-function createDockerConfig() {
-  const url = "http://192.168.0.215:8545";
-  const mnemonic =
-    "test test test test test test test test test test test junk";
-  return {
-    accounts: {
-      count: 10,
-      initialIndex: 0,
-      mnemonic,
-      path: "m/44'/60'/0'/0",
-    },
-    url,
-  };
-}
-
-function createLocalhostConfig() {
-  const url = "http://localhost:8545";
+function createConfig(ip: string) {
+  const url = `http://${ip}:8545`;
   const mnemonic =
     "test test test test test test test test test test test junk";
   return {
@@ -54,8 +39,8 @@ const config: HardhatUserConfig = {
       blockGasLimit: 100000000,
       allowUnlimitedContractSize: true,
     },
-    docker: createDockerConfig(),
-    localhost: createLocalhostConfig(),
+    docker: createConfig("192.168.0.215"),
+    localhost: createConfig("localhost"),
   },
   defaultNetwork: "localhost",
   solidity: {
